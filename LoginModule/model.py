@@ -5,9 +5,10 @@ from datetime import datetime
 class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    accountname = db.Column(db.String(80), unique=True, nullable=False)
+    a_name = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(256), unique=True, nullable=False)
     create_dt = db.Column(db.DATETIME, default=datetime.now())
+    update_dt = db.Column(db.DATETIME, default=datetime.now())
 
 
 class UserInfo(db.Model):

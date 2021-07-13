@@ -1,17 +1,18 @@
-from flask import Flask
-
+import os
 import config
-from Modeles.LoginModule import LoginModule
-from Modeles.MainModule import MainModule
-from PublicFunction.db_connect import db
 import pymysql
+
+from flask import Flask
+from LoginModule import login
+from MainModule import MainModule
+from PublicFunction.db_connect import db
 
 pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 
 # 注册蓝图模块
-app.register_blueprint(LoginModule.LM, url_prefix='/LM')  # 登录模块
-app.register_blueprint(MainModule.MM, url_prefix='/Main')  # 主模块
+app.register_blueprint(login.LoginModule, url_prefix='/LoginModule')  # 登录模块
+app.register_blueprint(MainModule.MM, url_prefix='/Main/')  # 主模块
 
 # mysql连接配置
 app.config['SQLALCHEMY_DATABASE_URI'] = config.SDU
@@ -26,9 +27,9 @@ def hello_world():
     return 'Hello World!'
 
 
-@app.route('/favicon.Ico')
+@app.route('/favicon.ico')
 def favicon():
-    return app.send_static_file('/Ico/favicon.Ico')
+    return app.send_static_file('./Ico/favicon.Ico')
 
 
 if __name__ == '__main__':

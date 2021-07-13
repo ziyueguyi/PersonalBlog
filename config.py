@@ -3,9 +3,14 @@ import os
 File_path = os.getcwd()
 m_info = {
     "user": "root",
-    "password": ".ai94264744946",
+    "password": "hzfdcj",
     "host": "localhost",
     "port": "3306",
-    "database": "PersonalBlog"}
-SDU = "mysql://" + m_info["user"] + ":" + m_info["password"] + "@" + \
-      m_info["host"] + ":" + m_info["port"] + "/" + m_info["database"]
+    "database": "PersonalBlog",
+    'charset': 'utf8mb4',
+}
+
+
+SDU = """mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}""".format(**m_info)
+if __name__ == '__main__':
+    print(SDU)
