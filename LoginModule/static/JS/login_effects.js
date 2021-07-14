@@ -105,7 +105,6 @@ layui.use('layer', function () {
                 type: "POST",
                 data:JsonData,
                 success:function (data){
-                    data = JSON.parse(data);
                     setTimeout(function () {
                                     $('.authent').show().animate({ right: 90 }, {
                                         easing: 'easeOutQuint',
@@ -125,10 +124,10 @@ layui.use('layer', function () {
                                         //登录成功
                                         $('.login div').fadeOut(100);
                                         $('.success').fadeIn(1000);
-                                        $('.success').html(data['text']);
+                                        $('.success').html(data['msg']);
                                         //跳转操作
                                     } else {
-                                        AjaxErro(data['text']);
+                                        AjaxErro(data['msg']);
                                     }
                                 }, 2400);
                 },
