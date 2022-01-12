@@ -11,13 +11,18 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-1.10.2" level="application" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="removeUnused" value="true" />
+    <option name="modifyBaseFiles" value="true" />
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/LoginModule/templates" />
-        <option value="$MODULE_DIR$/BackStage/tempaltes" />
-        <option value="$MODULE_DIR$/tempaltes" />
+        <option value="$MODULE_DIR$/MainModule/templates" />
+        <option value="$MODULE_DIR$/BackStage/templates" />
+        <option value="$MODULE_DIR$/templates" />
       </list>
     </option>
   </component>

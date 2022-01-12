@@ -11,10 +11,8 @@ m_info = {
 }
 
 SDU = """mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}""".format(**m_info)
-if __name__ == '__main__':
-    print(SDU)
-
-state_code = {
+SDU_TEST = 'sqlite:///' + os.path.join(File_path, 'static/database/PersonalBlog.db').replace('\\', '/')
+STATE_CODE = {
     200: {'code': 200, 'msg': '登录成功'},
     4001: {'code': 4001, 'msg': '密码错误'},
     4002: {'code': 4002, 'msg': '账号错误'},
@@ -22,6 +20,5 @@ state_code = {
     4004: {'code': 4004, 'msg': '验证未通过'},
     4103: {'code': 4103, 'msg': '缺少参数token'},
     4101: {'code': 4101, 'msg': '登录已过期'},
-
 }
 SECRET_KEY = "HZFDCJ"
