@@ -1,27 +1,32 @@
 from sqlalchemy.orm import backref
 
-from PublicFunction.db_connect import db
+from PublicFunction.db_connect import db, BaseTime
 from datetime import datetime
 
 
-class Users(db.Model):
+class Users(db.Model, BaseTime):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     a_name = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(256), unique=True, nullable=False)
-    ui = db.relationship('UserInfo', backref=backref('extend', uselist=False), lazy=True)
-    create_dt = db.Column(db.DATETIME, default=datetime.now())
-    update_dt = db.Column(db.DATETIME, default=datetime.now(), onupdate=datetime.now)
+    uuid = db.Column(db.String(255), default=None, index=True)
+    state = db.Column(db.Boolean, default=True, nullable=False)  # 状态
+    ui = db.relationship('UserInfo', backref=backref('users', uselist=False), lazy=True)
+    au = db.relationship('Authority', backref=backref('users', uselist=False), lazy=True)
+    # create_dt = db.Column(db.DateTime, default=datetime.date)
+    # update_dt = db.Column(db.Date, default=datetime.date, onupdate=datetime.date)
 
 
-class UserInfo(db.Model):
+class UserInfo(db.Model, BaseTime):
     __tablename__ = 'userinfo'
-    number = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    name = db.Column(db.String(80), default='匿名', nullable=True)
+    number = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True, index=True)
+    name = db.Column(db.String(80), default='匿名', nullable=False)
     age = db.Column(db.Integer, default=0, nullable=True)
     sex = db.Column(db.Enum('男', '女', '保密'), default='保密')
     phone = db.Column(db.String(11), nullable=True)
     mailbox = db.Column(db.String(256), nullable=True)
-    # us = db.relationship('Users', backref='u_id', lazy=True)
-    create_dt = db.Column(db.DATETIME, default=datetime.now())
-    update_dt = db.Column(db.DATETIME, default=datetime.now(), onupdate=datetime.now)
+    # create_dt = db.Column(db.DateTime, default=datetime.date)
+    # update_dt = db.Column(db.Date, default=datetime.date, onupdate=datetime.date)
+
+
+

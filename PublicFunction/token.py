@@ -1,16 +1,15 @@
-import functools
 import re
-
+import functools
+from config import TestingConfig
 from LoginModule.model import Users
-from flask import request, jsonify, g, redirect
+from flask import request, g, redirect, url_for, make_response
+from PublicFunction.db_connect import db
+from flask_httpauth import HTTPBasicAuth
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, SignatureExpired, BadSignature
 
-from PublicFunction.db_connect import db
-from config import SECRET_KEY, STATE_CODE
-
-from flask_httpauth import HTTPBasicAuth
-
 auth = HTTPBasicAuth()
+
+SECRET_KEY = TestingConfig.SECRET_KEY
 
 
 def create_token(api_user):
@@ -51,13 +50,14 @@ def login_required(view_func):
     def v_token(*args, **kwargs):
         try:
             # 在请求头上拿到token
-            token = request.headers["z-token"]
+            token = request.headers.get('z-token', None)
             Serializer(SECRET_KEY).loads(token)
-        except Exception as e:
-            ''.format(e)
+        except BaseException as e:
+            print('{0}token错误'.format(e))
             # 没接收的到token,给前端抛出错误
             # 这里的code推荐写一个文件统一管理。这里为了看着直观就先写死了。
-            return redirect('/LoginModule/index', 302)
+            # return redirect('/LoginModule/index', 302)
+            return redirect(url_for('LoginModule'), 302)
         return view_func(*args, **kwargs)
     return v_token
 
@@ -76,10 +76,11 @@ def verify_auth_token(token):
     s = Serializer(SECRET_KEY)
     # token正确
     try:
-        data = s.loads(token)
+        data = s.loads(token)['id']
         return data
     # token过期
-    except SignatureExpired:
+    except BaseException as e:
+        ''.format(e)
         return None
     # token错误
     except BadSignature:

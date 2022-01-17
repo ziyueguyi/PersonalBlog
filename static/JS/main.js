@@ -440,7 +440,7 @@ function hideImgImg(){
     const token_str = getToken()
     alert(token_str)
     if (token_str === "")
-    {window.location.href="/LoginModule/index";}
+    {window.location.href="/LoginModule";}
     else{
 
     }

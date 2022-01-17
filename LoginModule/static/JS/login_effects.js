@@ -1,11 +1,10 @@
 const canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
-const ajax_mockjax = 1;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
 //默认账号密码
 let CodeVal = 0;
 Code();
 
 function Code() {
-    if (canGetCookie == 1) {
+    if (canGetCookie === 1) {
         createCode("AdminCode");
         const AdminCode = getCookieValue("AdminCode");
         showCheck(AdminCode);
@@ -75,18 +74,6 @@ function Login_prompt_box(){
         color: '#777'
     });
 }
-const fullscreen = function () {
-    elem = document.body;
-    if (elem.webkitRequestFullScreen) {
-        elem.webkitRequestFullScreen();
-    } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-    } else if (elem.requestFullScreen) {
-        elem.requestFullscreen();
-    } else {
-        //浏览器不支持全屏API或已被禁用
-    }
-};
 layui.use('layer', function () {
     // 登录验证
     Login_prompt_box()
@@ -104,9 +91,8 @@ layui.use('layer', function () {
         } else if (code === '' || code.length !== 4) {
             ErroAlert('输入验证码');
         } else {
-
             //认证中..
-            fullscreen();
+            // fullscreen();
             $('.login').addClass('test'); //倾斜特效
             setTimeout(function () {
                 $('.login').addClass('testtwo'); //平移特效
@@ -123,13 +109,12 @@ layui.use('layer', function () {
                     queue: false
                 }).addClass('visible');
             }, 500);
-
             //登陆
             const JsonData = {login: login, pwd: pwd, code: code};
             //此处做为ajax内部判断
 
             $.ajax({
-                url: "http://127.0.0.1:5000/LoginModule/ver_inf",
+                url: "/LoginModule/ver_inf",
                 type: "POST",
                 data: JsonData,
                 success: function (data) {
@@ -138,8 +123,7 @@ layui.use('layer', function () {
                             easing: 'easeOutQuint',
                             duration: 600,
                             queue: false
-                        });
-                        $('.authent').animate({opacity: 0}, {
+                        }).animate({opacity: 0}, {
                             duration: 200,
                             queue: false
                         }).addClass('visible');
@@ -152,31 +136,19 @@ layui.use('layer', function () {
                             //登录成功
                             $('.login div').fadeOut(100);
                             $('.success').fadeIn(1000);
-                            window.location.href="/BackStage/bs_manage";
+                            const token = data['token']
+                            localStorage.setItem('z-token',token);
+                            window.location.href="/BackStage/";
                             //跳转操作
                         } else {
-                            AjaxErro(data['msg']);
+                            ErroAlert(data['msg']);
                         }
                     }, 2400);
                 },
-                error: function (err) {
-                    alert("验证失败");
+                error: function () {
+                    ErroAlert("验证失败");
                 }
             })
         }
     })
 })
-if (ajax_mockjax === 1) {
-    $.mockjax({
-        url: 'Ajax/Login',
-        status: 200,
-        responseTime: 50,
-        responseText: {"Status": "ok", "Text": "登陆成功&lt;br />&lt;br />欢迎回来"}
-    });
-    $.mockjax({
-        url: 'Ajax/LoginFalse',
-        status: 200,
-        responseTime: 50,
-        responseText: {"Status": "Erro", "Erro": "账号名或密码或验证码有误"}
-    });
-}

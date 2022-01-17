@@ -32,7 +32,7 @@ function ErroAlert(e) {
 
 //Ajax 错误返回处理
 function AjaxErro(e) {
-    if (e.Status == "Erro") {
+    if (e.code === "Erro") {
         switch (e.Erro) {
             case "500":
                 top.location.href = '/Erro/Erro500';
@@ -54,15 +54,15 @@ var code = "";
 function createCode(e) {
     code = "";
     var codeLength = 4;
-    var selectChar = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    var selectChar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     for (var i = 0; i < codeLength; i++) {
         var charIndex = Math.floor(Math.random() * 60);
         code += selectChar[charIndex];
     }
-    if (code.length != codeLength) {
+    if (code.length !== codeLength) {
         createCode(e);
     }
-	if(canGetCookie == 1){
+	if(canGetCookie === 1){
     	setCookie(e, code, 60 * 60 * 60, '/');
 	}else{
 		return code;
@@ -76,9 +76,9 @@ function createCode(e) {
 function setCookie(name, value, hours, path) {
     var name = escape(name);
     var value = escape(value);
-    var expires = new Date();
+    const expires = new Date();
     expires.setTime(expires.getTime() + hours * 3600000);
-    path = path == "" ? "" : ";path=" + path;
+    path = path === "" ? "" : ";path=" + path;
     _expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();
     document.cookie = name + "=" + value + _expires + path;
 }
@@ -91,10 +91,10 @@ function getCookieValue(name) {
     name += "=";
     var pos = allcookies.indexOf(name);
     //如果找到了具有该名字的cookie，那么提取并使用它的值     
-    if (pos != -1) {    //如果pos值为-1则说明搜索"version="失败     
+    if (pos !== -1) {    //如果pos值为-1则说明搜索"version="失败
         var start = pos + name.length;   //cookie值开始的位置     
         var end = allcookies.indexOf(";", start); //从cookie值开始的位置起搜索第一个";"的位置,即cookie值结尾的位置     
-        if (end == -1) end = allcookies.length; //如果end值为-1说明cookie列表里只有一个cookie     
+        if (end === -1) end = allcookies.length; //如果end值为-1说明cookie列表里只有一个cookie
         var value = allcookies.substring(start, end);  //提取cookie的值     
         return unescape(value);       //对它解码           
     }
