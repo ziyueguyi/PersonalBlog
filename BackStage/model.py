@@ -1,3 +1,5 @@
+from sqlalchemy.orm import backref
+
 from PublicFunction.db_connect import db, BaseTime
 
 
@@ -27,4 +29,16 @@ class Authority(db.Model, BaseTime):
     numbers_u_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True, primary_key=True)
     numbers_al_id = db.Column(db.Integer, db.ForeignKey('authority_list.id'), nullable=False, index=True,
                               primary_key=True)
+    add_number = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True)
+    user_id = db.relationship('Users', backref=backref('a_u_id', uselist=False), lazy=True,
+                              foreign_keys=[numbers_u_id])
+    Authority_List_id = db.relationship('Authority_List', backref=backref('a_al_id', uselist=False), lazy=True,
+                                        foreign_keys=[numbers_al_id])
+
+
+class Account_Type(db.Model, BaseTime):
+    __tablename__ = 'account_type'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    acc_name = db.Column(db.String(255))
+    acc_state = db.Column(db.Boolean, default=True, nullable=True)
     add_number = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True)

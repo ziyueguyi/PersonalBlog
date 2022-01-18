@@ -17,7 +17,7 @@ body ::-webkit-input-placeholder {
   color: #4E546D;
 }
 body .authent {
-  box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.55);
   display: none;
   background: #35394a;
   /* Old browsers */
@@ -42,7 +42,7 @@ body .authent {
   padding: 20px 70px;
   top: 200px;
   bottom: 0;
-  height: 70px;
+  height: 170px;
   opacity: 0;
 }
 body .authent p {
@@ -65,7 +65,7 @@ body .testtwo {
   left: -320px !important;
 }
 body .test {
-  box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.55);
   pointer-events: none;
   top: -100px !important;
   -webkit-transform: rotateX(70deg) scale(0.8) !important;
@@ -78,7 +78,7 @@ body .login
 {
   box-shadow: -15px 15px 15px rgba(6, 17, 47, 0.7);
   opacity: 1;
-  top: 20px;
+  /*top: 20px;*/
   -webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
   -webkit-transition-property: -webkit-transform,opacity,box-shadow,top,left;
           transition-property: transform,opacity,box-shadow,top,left;
@@ -89,7 +89,7 @@ body .login
           transform-origin: 161px 100%;
   -webkit-transform: rotateX(0deg);
           transform: rotateX(0deg);
-  position: relative;
+  /*position: relative;*/
   width: 240px;
   /*border-top: 2px solid #D8312A;*/
   height: 300px;
@@ -99,7 +99,7 @@ body .login
   margin: auto;
   top: 0;
   bottom: 0;
-  padding: 100px 40px 40px 40px;
+  padding: 10px 40px 40px 40px;
   background: #35394a;
   /* Old browsers */
   /* FF3.6+ */
@@ -118,7 +118,8 @@ body .login .validation {
   position: absolute;
   z-index: 1;
   right: 10px;
-  top: 14px;
+  padding-top: 5px;
+  top: 10px;
   opacity: 0;
 }
 body .login .disclaimer {
@@ -129,8 +130,7 @@ body .login .disclaimer {
 }
 body .login_title {
   color: #D3D7F7;
-  height: 60px;
-  text-align: left;
+  height: 40px;
   font-size: 16px;
 }
 body .login_fields {
@@ -168,8 +168,8 @@ body .login_fields__user, body .login_fields__password {
 }
 body .login_fields__submit {
   position: relative;
-  top: 17px;
-  left: 0;
+  top: 15px;
+  left: 15px;
   width: 80%;
   right: 0;
   margin: auto;
@@ -214,7 +214,7 @@ body .login_fields__submit input:hover {
 .love {
   position: absolute;
   right: 20px;
-  bottom: 0px;
+  bottom: 0;
   font-size: 11px;
   font-weight: normal;
 }
@@ -231,7 +231,7 @@ body .login_fields__submit input:hover {
 .love img {
   position: relative;
   top: 3px;
-  margin: 0px 4px;
+  margin: 0 4px;
   width: 10px;
 }
 

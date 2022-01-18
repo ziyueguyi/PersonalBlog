@@ -9,8 +9,7 @@ class Users(db.Model, BaseTime):
     password = db.Column(db.String(256), unique=True, nullable=False)
     uuid = db.Column(db.String(255), default=None, index=True)
     state = db.Column(db.Boolean, default=True, nullable=False)  # 状态
-    ui = db.relationship('UserInfo', backref=backref('users', uselist=False), lazy=True)
-    au = db.relationship('Authority', backref=backref('users', uselist=False), lazy=True)
+    ui = db.relationship('UserInfo', backref=backref('users_ui', uselist=False), lazy=True)
 
 
 class UserInfo(db.Model, BaseTime):
@@ -23,4 +22,13 @@ class UserInfo(db.Model, BaseTime):
     mailbox = db.Column(db.String(256), nullable=True)
 
 
+class User_Type(db.Model, BaseTime):
+    __tablename__ = 'user_type'
+    numbers_u_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True, primary_key=True)
+    numbers_at_id = db.Column(db.Integer, db.ForeignKey('account_type.id'), nullable=False, index=True, primary_key=True)
 
+    add_number = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True)
+
+    user_id = db.relationship('Users', backref=backref('ut_u_id', uselist=False), lazy=True, foreign_keys=[numbers_u_id])
+    authority_type_id = db.relationship('Account_Type', backref=backref('tu_at_id', uselist=False), lazy=True,
+                                        foreign_keys=[numbers_at_id])

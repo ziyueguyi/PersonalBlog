@@ -89,6 +89,23 @@ class Get_User(MethodView):
     def get():
         token = request.headers.get('z-token', None)
         ver_token = verify_auth_token(token)
+        name_p = None
+        mailbox_p = None
+        if ver_token:
+            number_id = ver_token
+            try:
+                user = lm_model.Users
+                users = user.query.filter(user.id == number_id).first()
+                name_p = users.ui[0].name
+                mailbox_p = users.ui[0].mailbox
+            except BaseException as e:
+                print(e)
+        return jsonify(name=name_p, mailbox=mailbox_p)
+
+    @staticmethod
+    def post():
+        token = request.headers.get('z-token', None)
+        ver_token = verify_auth_token(token)
 
         name_p = None
         mailbox_p = None
@@ -106,7 +123,7 @@ class Get_User(MethodView):
 
 def register_api():
     # get_user = Get_User.as_view('get_user')
-    BackStage.add_url_rule('/get_user', view_func=Get_User.as_view('get_user'), methods=['GET', ])
+    BackStage.add_url_rule('/get_user', view_func=Get_User.as_view('get_user'), methods=['GET', 'POST'])
 
 
 register_api()

@@ -1,85 +1,79 @@
-<!doctype html>
-<html lang="ch">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="左右结构项目，属于大人员的社交工具">
-    <meta name="keywords" content="左右结构项目 社交 占座 ">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <title>后台管理！</title>
+{% extends 'Base_Templates.html' %}
+{% block title %}后台管理{% endblock %}
+{% block head %}
     <link href="{{ url_for('.static',filename='Css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='Css/common.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='Css/slide.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='Css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='Css/flat-ui.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='Css/jquery.nouislider.css') }}">
-    <script src="{{ url_for('.static',filename='JS/jquery.min.js') }}"></script>
-    <script src="{{ url_for('.static',filename='JS/bootstrap.min.js') }}"></script>
+{#    <script src="{{ url_for('.static',filename='JS/jquery.min.js') }}"></script>#}
+{#    <script src="{{ url_for('.static',filename='JS/bootstrap.min.js') }}"></script>#}
     <script src="{{ url_for('.static',filename='JS/html5.js') }}"></script>
     <script src="{{ url_for('.static',filename='JS/respond.min.js') }}"></script>
-</head>
+{% endblock %}
+{% block content %}
+    <div id="wrap">
+        <!-- 左侧菜单栏目块 -->
+        <div class="leftMeun" id="leftMeun">
+            <div id="logoDiv">
+                <p id="logoP"><img id="logo" alt="后台管理"
+                                   src="{{ url_for('.static',filename='Images/logo.png') }}"><span>后台管理</span></p>
+            </div>
+            <div id="personInfor">
+                <p id="name_p"></p>
+                <p><span id="mailbox_p"></span></p>
+                <p>
+                    <a onclick="sign_out();">退出登录</a>
+                </p>
+            </div>
+            <div>
+                <div class="meun-title">账号管理</div>
+                <div class="meun-item meun-item-active" href="#sour" aria-controls="sour" role="tab" data-toggle="tab">
+                    <img
+                            src="{{ url_for('.static',filename='Images/icon_source.png') }}" alt=""/>资源管理
+                </div>
+                <div class="meun-item" href="#char" aria-controls="char" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_chara_grey.png') }}" alt=""/>权限管理
+                </div>
+                <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_user_grey.png') }}" alt=""/>用户管理
+                </div>
+                <div class="meun-item" href="#chan" aria-controls="chan" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_change_grey.png') }}" alt=""/>修改密码
+                </div>
+                <div class="meun-title">地区管理</div>
+                <div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_house_grey.png') }}" alt=""/>地区管理
+                </div>
+                <div class="meun-item" href="#regu" aria-controls="regu" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_rule_grey.png') }}" alt=""/>规则管理
+                </div>
+                <div class="meun-item" href="#stud" aria-controls="stud" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_card_grey.png') }}" alt=""/>人员信息
+                </div>
+                <div class="meun-item" href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab"><img
+                        src="{{ url_for('.static',filename='Images/icon_char_grey.png') }}" alt=""/>座位管理
+                </div>
+            </div>
 
-<body>
-<div id="wrap">
-    <!-- 左侧菜单栏目块 -->
-    <div class="leftMeun" id="leftMeun">
-        <div id="logoDiv">
-            <p id="logoP"><img id="logo" alt="后台管理"
-                               src="{{ url_for('.static',filename='Images/logo.png') }}"><span>后台管理</span></p>
         </div>
-        <div id="personInfor">
-            <p id="name_p"></p>
-            <p><span id="mailbox_p"></span></p>
-            <p>
-                <a onclick="sign_out();">退出登录</a>
-            </p>
-        </div>
-        <div>
-            <div class="meun-title">账号管理</div>
-            <div class="meun-item meun-item-active" href="#sour" aria-controls="sour" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_source.png') }}" alt=""/>资源管理
-            </div>
-            <div class="meun-item" href="#char" aria-controls="char" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_chara_grey.png') }}" alt=""/>权限管理
-            </div>
-            <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_user_grey.png') }}" alt=""/>用户管理
-            </div>
-            <div class="meun-item" href="#chan" aria-controls="chan" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_change_grey.png') }}" alt=""/>修改密码
-            </div>
-            <div class="meun-title">地区管理</div>
-            <div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_house_grey.png') }}" alt=""/>地区管理
-            </div>
-            <div class="meun-item" href="#regu" aria-controls="regu" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_rule_grey.png') }}" alt=""/>规则管理
-            </div>
-            <div class="meun-item" href="#stud" aria-controls="stud" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_card_grey.png') }}" alt=""/>人员信息
-            </div>
-            <div class="meun-item" href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab"><img
-                    src="{{ url_for('.static',filename='Images/icon_char_grey.png') }}" alt=""/>座位管理
-            </div>
-        </div>
+        <!-- 右侧具体内容栏目 -->
+        <div id="rightContent">
+            <a class="toggle-btn" id="nimei">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </a>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <iframe>
 
+                </iframe>
+
+            </div>
+        </div>
     </div>
-    <!-- 右侧具体内容栏目 -->
-    <div id="rightContent">
-        <a class="toggle-btn" id="nimei">
-            <i class="glyphicon glyphicon-align-justify"></i>
-        </a>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <iframe>
-
-            </iframe>
-
-        </div>
-    </div>
-</div>
-</body>
-<script src="{{ url_for('.static',filename='JS/jquery.nouislider.js') }}"></script>
-<script src="{{ url_for('.static',filename='JS/pb_index.JS') }}"></script>
-</html>
+{% endblock %}
+{% block foot %}
+    <script src="{{ url_for('.static',filename='JS/jquery.nouislider.js') }}"></script>
+    <script src="{{ url_for('.static',filename='JS/pb_index.JS') }}"></script>
+{% endblock %}
