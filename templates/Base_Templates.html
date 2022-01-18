@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% block title %}
+            <title>基础模板</title>
+        {% endblock %}
+        <link rel="stylesheet" type="text/css"
+              href="{{ url_for('.static',filename='other_sources/bootstrap-3.4.1/css/bootstrap.css') }}">
+        <script type="text/javascript" src="{{ url_for('.static',filename='js/jquery-3.6.0.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('.static',filename='js/vue.js') }}"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('.static',filename='Ico/blog.ico') }}"/>
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+    {% block foot %}
+    {% endblock %}
+</html>

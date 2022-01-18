@@ -1,7 +1,5 @@
 from sqlalchemy.orm import backref
-
 from PublicFunction.db_connect import db, BaseTime
-from datetime import datetime
 
 
 class Users(db.Model, BaseTime):
@@ -13,8 +11,6 @@ class Users(db.Model, BaseTime):
     state = db.Column(db.Boolean, default=True, nullable=False)  # 状态
     ui = db.relationship('UserInfo', backref=backref('users', uselist=False), lazy=True)
     au = db.relationship('Authority', backref=backref('users', uselist=False), lazy=True)
-    # create_dt = db.Column(db.DateTime, default=datetime.date)
-    # update_dt = db.Column(db.Date, default=datetime.date, onupdate=datetime.date)
 
 
 class UserInfo(db.Model, BaseTime):
@@ -25,8 +21,6 @@ class UserInfo(db.Model, BaseTime):
     sex = db.Column(db.Enum('男', '女', '保密'), default='保密')
     phone = db.Column(db.String(11), nullable=True)
     mailbox = db.Column(db.String(256), nullable=True)
-    # create_dt = db.Column(db.DateTime, default=datetime.date)
-    # update_dt = db.Column(db.Date, default=datetime.date, onupdate=datetime.date)
 
 
 

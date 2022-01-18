@@ -28,7 +28,7 @@ STATE_CODE = {
 }
 
 Ignore_List = [
-    '/',
+    '',
     '/LoginModule',
     '/BackStage',
     '/LoginModule/ver_inf',
@@ -62,7 +62,7 @@ class Config(object):
     # # 同样地，为了保持一致，许多操作可以显式地抛出 BadRequest 异常。
     # # 因为在调试中，你希望准确地找出异常的原因，这个设置用于在这些情形下调试。
     # # 如果这个值被设置为 True ，你只会得到常规的回溯。
-    EXPLAIN_TEMPLATE_LOADING = True,  # 打印加载路径，方便加载
+    # EXPLAIN_TEMPLATE_LOADING = False,  # 打印加载路径，方便加载
     # JSON_AS_ASCII = True,
     # # 默认情况下 Flask 使用 ascii 编码来序列化对象。如果这个值被设置为 False ，
     # # Flask不会将其编码为 ASCII，并且按原样输出，返回它的 unicode 字符串。
@@ -82,7 +82,7 @@ class ProductionConfig(Config):
 
 class DevelopmentConfig(Config):
     DEBUG = False
-    TESTING = False
+    # TESTING = False
     SECRET_KEY = "epsRcwgNwsbFpcMOWBDLccbQIHVeReaSEtSylOlYVXDPRPRpUzDOCOqIKMpzLzKG"  # token秘钥
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(File_path, 'static/database/PersonalBlog.db').replace('\\',
                                                                                                                 '/')  # 测试数据库
@@ -90,7 +90,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     DEBUG = True
-    TESTING = True
+    # TESTING = True
     SECRET_KEY = "BZbZzuqy"  # token秘钥
     SQLALCHEMY_DATABASE_URI = """mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}""".format(
         **m_info)  # 正式数据库

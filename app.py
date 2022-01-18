@@ -16,7 +16,7 @@ from PublicFunction.token import verify_auth_token
 from app_config import r_app
 
 pymysql.install_as_MySQLdb()
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', static_folder='./static')
 manager = Manager(app)
 # 注册蓝图模块
 r_app(app)
@@ -35,7 +35,7 @@ def hello_world():
 
 @app.route('/blog.ico')
 def favicon():
-    return app.send_static_file('./Ico/favicon.Ico')
+    return app.send_static_file('/Ico/favicon.Ico')
 
 
 @app.before_request
@@ -51,7 +51,7 @@ def is_login():
 
 # 参数是错误代码
 @app.errorhandler(404)
-def error404():
+def error404(msg):
     """
     注意，一定要加参数接收错误信息
     :return:
@@ -62,6 +62,5 @@ def error404():
 
 
 if __name__ == '__main__':
-    # manager.run(default_command="runserver")
     server = pywsgi.WSGIServer(('0.0.0.0', 5000), manager)
     server.serve_forever()
