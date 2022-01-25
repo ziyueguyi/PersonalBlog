@@ -10,6 +10,6 @@ from MainModule import MainModule
 
 
 def r_app(app):
-    app.register_blueprint(login.LoginModule, url_prefix='/LoginModule')  # 登录模块
     app.register_blueprint(MainModule.MM, url_prefix='/Main')  # 前台主模块
     app.register_blueprint(bs_management.BackStage, url_prefix='/BackStage')  # 后台主模块
+    app.register_blueprint(login.LoginModule, url_prefix='/LoginModule')  # 登录模块

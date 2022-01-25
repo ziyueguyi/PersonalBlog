@@ -9,10 +9,12 @@ class Pro_rout(db.Model, BaseTime):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 目录编码
     p_name = db.Column(db.String(80), unique=True, nullable=False)  # 目录名称
     p_url = db.Column(db.String(256), unique=True, nullable=False)  # 目录链接
+    p_img_url = db.Column(db.String(256), server_default='default.jpg')  # 目录图片链接
     p_level = db.Column(db.Integer, nullable=False, default=1)  # 目录等级
     superior_id = db.Column(db.Integer, nullable=False, default=1)  # 目录上级id
+    sequence = db.Column(db.Integer, default=1, nullable=False)  # 状态
     state = db.Column(db.Boolean, default=True, nullable=False)  # 状态
-    flag = db.Column(db.Integer, default=1)  # 链接类型
+    flag = db.Column(db.Integer, default=1)  # 链接类型：0>不展示，1>展示，2>后台接口
 
 
 class Authority_List(db.Model, BaseTime):

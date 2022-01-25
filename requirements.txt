@@ -27,3 +27,10 @@ sqlalchemy       1.4.20
 Werkzeug         1.0.1
 zope.event       4.5.0
 zope.interface   5.4.0
+
+PyMySQL~=1.0.2
+gevent~=21.1.2
+Flask~=1.1.4
+SQLAlchemy~=1.4.20
+alembic~=1.6.5
+itsdangerous~=1.1.0

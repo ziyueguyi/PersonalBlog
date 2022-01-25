@@ -18,14 +18,6 @@ m_info = {
 """
 返回状态及说明
 """
-STATE_CODE = {
-    200: {'code': 200, 'msg': '登录成功'},
-    4002: {'code': 4002, 'msg': '账号密码错误'},
-    4003: {'code': 4003, 'msg': '验证码错误'},
-    4004: {'code': 4004, 'msg': '验证未通过'},
-    4103: {'code': 4103, 'msg': '缺少参数token'},
-    4101: {'code': 4101, 'msg': '登录已过期'},
-}
 
 Ignore_List = [
     '',
@@ -73,7 +65,7 @@ class Config(object):
     # # 你可以通过修改这个配置的值来覆盖默认的操作。但这是不被推荐的做法因为这个默认的行为可能会给你在性能的代价上带来改善。
     # JSONIFY_PRETTYPRINT_REGULAR = True,
     # JSONIFY_MIMETYPE = 'application/json',
-    # TEMPLATES_AUTO_RELOAD = True,  # 模板更新是否自动加载
+    TEMPLATES_AUTO_RELOAD = True,  # 模板更新是否自动加载
 
 
 class ProductionConfig(Config):

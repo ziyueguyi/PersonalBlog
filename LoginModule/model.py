@@ -1,5 +1,6 @@
 from sqlalchemy.orm import backref
 from PublicFunction.db_connect import db, BaseTime
+from BackStage.model import Account_Type
 
 
 class Users(db.Model, BaseTime):
@@ -25,8 +26,10 @@ class UserInfo(db.Model, BaseTime):
 class User_Type(db.Model, BaseTime):
     __tablename__ = 'user_type'
     numbers_u_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True, primary_key=True)
-    numbers_at_id = db.Column(db.Integer, db.ForeignKey('account_type.id'), nullable=False, index=True, primary_key=True)
+    numbers_at_id = db.Column(db.Integer, db.ForeignKey('account_type.id'), nullable=False, index=True,
+                              primary_key=True)
     add_number = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True)
-    user_id = db.relationship('Users', backref=backref('ut_u_id', uselist=False), lazy=True, foreign_keys=[numbers_u_id])
-    authority_type_id = db.relationship('Account_Type', backref=backref('tu_at_id', uselist=False), lazy=True,
+    user_id = db.relationship('Users', backref=backref('ut_u_id', uselist=False), lazy=True,
+                              foreign_keys=[numbers_u_id])
+    authority_type_id = db.relationship(Account_Type, backref=backref('tu_at_id', uselist=False), lazy=True,
                                         foreign_keys=[numbers_at_id])

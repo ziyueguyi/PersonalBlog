@@ -1,0 +1,31 @@
+{% extends 'Base_Templates.html' %}
+{% block title %}路由管理{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='css/resource_manage.css') }}">
+{% endblock %}
+{% block content %}
+    <div id="rm_body">
+        <div id="rm_left">
+            <span>功能菜单</span>
+            <ul>
+
+            </ul>
+        </div>
+        <div id="rm_right">
+            <div id="rmr_top">
+                <input type="checkbox" value="多选"/>
+                <input type="button" value="启用"/>
+                <input type="button" value="添加"/>
+                <input type="button" value="删除"/>
+                <input type="button" value="修改"/>
+                <input type="button" value="禁用"/>
+            </div>
+            <div id="rmr_bottom">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block foot %}
+    <script src="{{ url_for('.static',filename='js/resource_manage.js') }}"></script>
+{% endblock %}

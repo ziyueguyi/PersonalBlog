@@ -46,11 +46,9 @@ body {
 	/*position: absolute;*/
 	box-sizing: border-box;
 	float: left;
-	box-sizing: border-box;
 	padding-left: 200px;
 	overflow-y: overlay;
 	overflow-x: hidden;
-	/*background-color: #eff3f6;*/
 	clear: both;
 	color: #717592;
 	min-width: 100%;
@@ -102,16 +100,32 @@ body {
 .meun dl {
 	padding: 0 10px;
 }
+.grand_son_ul{
+	height: auto;
+	width: auto;
+	padding-left: 10px;
+}
 .meun-title {
 	color: #828e9a;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 14px;
+	/*padding-top: 10px;*/
+	padding-left: 10px;
+	/*padding-bottom: 10px;*/
+	font-size: 20px;
 	font-weight: bold;
 }
+.son_li{
+	height: auto;
+	width: auto;
+	background: #2f4154;
+	border-bottom-color: rgba(200,200,200,0.5);
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-radius:10px;
+}
 .meun-item {
-	line-height: 40px;
+	/*line-height: 40px;*/
 	height: 40px;
+	padding-left: 10px;
 	color: #aab1b7;
 	cursor: pointer;
 }
@@ -128,9 +142,21 @@ body {
 	height: 20px;
 }
 .meun-item-active {
-	background-color: #3d4e60;
-	border-right: 4px solid #647f9d;
+	/*background-color: #3d4e60;*/
+	/*border-right: 4px solid #647f9d;*/
 	color: #fff;
+}
+#content {
+	height: auto;
+	width: auto;
+	padding-left: 0;
+	padding-top: 0;
+}
+#catalog{
+	height: auto;
+	width: auto;
+	padding-left: 10px;
+	padding-top: 10px;
 }
 /*右侧具体内容栏目*/
 

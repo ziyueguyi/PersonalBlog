@@ -424,7 +424,6 @@ function touchEnd(event){
 }
 function getToken(){
     const cooke_str = document.cookie;//获取cookie字符串
-    alert(cooke_str)
     const cookie_arr = cooke_str.split(";");//分割
     //遍历匹配
     for (let i = 0; i < cookie_arr.length; i++) {
