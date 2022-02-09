@@ -112,6 +112,4 @@ function dire_click(data){
 function sign_out() {
     localStorage.clear()
     window.location.href = '/LoginModule'
-
-
 }
